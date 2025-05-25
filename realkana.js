@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name         RealKana Definition Helper
+// @author       JqJohnny
 // @namespace    http://tampermonkey.net/
 // @version      1.2
 // @description  Pulls defintiions from Jisho API and displays them.
@@ -50,7 +51,7 @@
   function updateDefinitionBox(text) {
     let box = document.getElementById("definition-box");
 
-    // Select the correct input box (note: getElementById was incorrect, changed to querySelector)
+    // Select the correct input box
     const inputBox = document.querySelector("input.MuiInputBase-input");
     if (!inputBox) return;
 
