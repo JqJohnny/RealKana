@@ -35,8 +35,8 @@
                   console.error("Parsing Error:", err);
               }
 
-              console.log("📘 Definition:", gloss);
-              displayDefinition(gloss);
+              console.log("Definition:", gloss);
+              updateDefinitionBox(gloss);
           },
           onerror: function (err) {
               console.error("Request failed", err);
@@ -44,19 +44,26 @@
       });
   }
 
-  function displayDefinition(gloss) {
-  let defBox = document.querySelector('#kana-definition');
-  if (!defBox) {
-    defBox = document.createElement('div');
-    defBox.id = 'kana-definition';
-    defBox.style.marginTop = '16px';
-    defBox.style.fontSize = '18px';
-    defBox.style.color = '#007acc';
-    defBox.style.fontWeight = 'bold';
-    document.querySelector('#prompt')?.appendChild(defBox);
+  function updateDefinitionBox(text) {
+    let box = document.getElementById("definition-box");
+    if (!box) {
+      const inputBox = document.querySelector('input.MuiInputBase-input');
+      if (!inputBox) return;
+
+      box = document.createElement("div");
+      box.id = "definition-box";
+      box.style.marginTop = "8px";
+      box.style.padding = "6px 10px";
+      box.style.border = "1px solid #ccc";
+      box.style.borderRadius = "4px";
+      box.style.backgroundColor = "#f9f9f9";
+      box.style.fontSize = "14px";
+      box.style.maxWidth = "300px";
+
+      inputBox.parentElement.parentElement.appendChild(box);
+    }
+    box.textContent = text;
   }
-  defBox.textContent = `📘 Definition: ${gloss}`;
-}
 
 
   function waitForInput() {
